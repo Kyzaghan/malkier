@@ -11,6 +11,21 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+
+Route::group(['middleware' => ['web']], function ()
+{
+    Route::get('/', function () {
+        return view('welcome');
+    })->name('login');
+
+    Route::post('/signin', [
+        'uses' => 'auth\UserController@postSignIn',
+        'as' => 'signin'
+    ]);
+
+    Route::get('/dashboard', [
+        'uses' => 'auth\UserController@getDashboard',
+        'as' => 'dashboard',
+        'middleware' => 'auth'
+    ]);
 });
