@@ -14,17 +14,17 @@ class DepartmentUser extends Model
      * Department tablosuna bire çok bağlantı yapılıyor.
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function department()
+    /*public function department()
     {
-        return $this->belongsTo('Department');
-    }
+        return $this->belongsTo('Department', 'department_id');
+    }*/
 
     /**
      * User tablosuna bire çok bağlantı yapılıyor.
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function user()
+    /*public function user()
     {
-        return $this->belongsTo('User');
-    }
+        return $this->belongsTo('User', 'user_id');
+    }*/
 }

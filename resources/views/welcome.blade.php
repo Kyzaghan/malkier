@@ -1,6 +1,8 @@
 @extends('layouts.master')
 @section('title', 'Malkier')
-
+<?php
+$departments = DB::table('departments')->get();
+?>
 @section('content')
     <div class="panel">
         <div class="panel-body">
@@ -27,6 +29,18 @@
             <div class="row">
                 <div class="col-md-12">
                     <form action="{{route('signin')}}" method="post">
+                        {{ csrf_field() }}
+                        <div class="form-group {{$errors->has('department') ? 'has-error' : ''}}">
+                            <label for="department">
+                                Departman
+                            </label>
+                            <select class="form-control" type="text" name="department"
+                                   id="department" {{Request::old('department')}}>
+                                @foreach ($departments as $department)
+                                    <option value="{{$department->id}}">{{ $department->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
                         <div class="form-group {{$errors->has('username') ? 'has-error' : ''}}">
                             <label for="username">
                                 Kullanıcı adınız
@@ -41,7 +55,6 @@
                             <input class="form-control" type="password" name="password" id="password"/>
                         </div>
                         <button type="submit" class="btn btn-primary">Giriş Yap</button>
-                        <input type="hidden" name="_token" value="{{Session::token()}}"/>
                     </form>
                 </div>
             </div>
