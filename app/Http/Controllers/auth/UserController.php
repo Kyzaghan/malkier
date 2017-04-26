@@ -36,6 +36,15 @@ class UserController extends Controller
             return redirect()->back()->withErrors('Kullanıcı adı veya şifre hatalı');
         }
     }
+
+    public function logout()
+    {
+        if(Auth::check())
+        {
+            Auth::logout();
+            return redirect()->route('login');
+        }
+    }
 }
 
 ?>

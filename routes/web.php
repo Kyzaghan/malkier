@@ -28,4 +28,10 @@ Route::group(['middleware' => ['web']], function ()
         'as' => 'dashboard',
         'middleware' => 'auth'
     ]);
+
+    Route::get('/logout', [
+        'uses' => 'auth\UserController@logout',
+        'as' => 'logout',
+        'middleware' => 'auth'
+    ]);
 });

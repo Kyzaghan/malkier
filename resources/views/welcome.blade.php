@@ -2,8 +2,28 @@
 @section('title', 'Malkier')
 <?php
 $departments = DB::table('departments')->get();
+$errorlist = "";
+foreach($errors->all() as $error)
+    {
+        $errorlist = $errorlist . $error.'\n';
+    }
 ?>
+@section('header')
+    <!-- Notify JS Latest compiled and minified JavaScript -->
+    <script src="{{ asset('js/plugin/notify/notify.min.js') }}"></script>
+@endsection
+
 @section('content')
+    @if(count($errors) > 0)
+        <script type="text/javascript">
+            $(function() {
+                $('header').notify(
+                    "{{$errorlist}}",
+                    { position:"bottom center" }
+                );
+            });
+        </script>
+    @endif
     <div class="panel">
         <div class="panel-body">
             <div class="panel-heading">
@@ -14,18 +34,6 @@ $departments = DB::table('departments')->get();
                 </div>
                 <hr>
             </div>
-
-            @if(count($errors) > 0)
-                <div class="row">
-                    <div class="col-md-6 col-md-offset-4">
-                        <ul>
-                            @foreach($errors->all() as $error)
-                                <li>{{$error}}</li>
-                            @endforeach
-                        </ul>
-                    </div>
-                </div>
-            @endif
             <div class="row">
                 <div class="col-md-12">
                     <form action="{{route('signin')}}" method="post">

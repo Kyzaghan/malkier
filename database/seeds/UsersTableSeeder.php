@@ -15,6 +15,8 @@ class UsersTableSeeder extends Seeder
             'id' => 1,
             'email' => 'admin@admin.com.tr',
             'username' => 'admin',
+            'name'=> 'Name',
+            'surname' => 'Surname',
             'password' => bcrypt('admin')
         ]);
 
@@ -22,6 +24,8 @@ class UsersTableSeeder extends Seeder
             'id' => 2,
             'email' => 'user@user.com.tr',
             'username' => 'user',
+            'name'=> 'Name',
+            'surname' => 'Surname',
             'password' => bcrypt('user')
         ]);
 
