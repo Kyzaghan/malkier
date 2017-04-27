@@ -3,27 +3,24 @@
 <?php
 $departments = DB::table('departments')->get();
 $errorlist = "";
-foreach($errors->all() as $error)
-    {
-        $errorlist = $errorlist . $error.'\n';
-    }
+foreach ($errors->all() as $error) {
+    $errorlist = $errorlist . $error . '\n';
+}
 ?>
-@section('header')
-    <!-- Notify JS Latest compiled and minified JavaScript -->
-    <script src="{{ asset('js/plugin/notify/notify.min.js') }}"></script>
-@endsection
-
-@section('content')
+@section('footer')
     @if(count($errors) > 0)
         <script type="text/javascript">
-            $(function() {
+            $(function () {
                 $('header').notify(
                     "{{$errorlist}}",
-                    { position:"bottom center" }
+                    {position: "bottom center"}
                 );
             });
         </script>
     @endif
+@endsection
+
+@section('content')
     <div class="panel">
         <div class="panel-body">
             <div class="panel-heading">
@@ -43,7 +40,7 @@ foreach($errors->all() as $error)
                                 Departman
                             </label>
                             <select class="form-control" type="text" name="department"
-                                   id="department" {{Request::old('department')}}>
+                                    id="department" {{old('department')}}>
                                 @foreach ($departments as $department)
                                     <option value="{{$department->id}}">{{ $department->name }}</option>
                                 @endforeach
@@ -54,7 +51,7 @@ foreach($errors->all() as $error)
                                 Kullanıcı adınız
                             </label>
                             <input class="form-control" type="text" name="username"
-                                   id="username" {{Request::old('username')}} />
+                                   id="username" value="{{old('username')}}" />
                         </div>
                         <div class="form-group {{$errors->has('password') ? 'has-error' : ''}}">
                             <label for="password">

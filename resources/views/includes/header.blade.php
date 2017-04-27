@@ -37,7 +37,7 @@
                                         <p class="text-left"><strong>{{ Auth::user()->name }} {{ Auth::user()->surname }}</strong></p>
                                         <p class="text-left small">{{ Auth::user()->email }}</p>
                                         <p class="text-left">
-                                            <a href="#" class="btn btn-primary btn-block btn-sm">Profil</a>
+                                            <a href="{{ URL::to('profile') }}" class="btn btn-primary btn-block btn-sm">Profil</a>
                                         </p>
                                     </div>
                                 </div>

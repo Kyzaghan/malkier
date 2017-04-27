@@ -9,6 +9,7 @@ class User extends Model implements Authenticatable
 {
     use \Illuminate\Auth\Authenticatable;
 
+    protected $fillable = ['email', 'username', 'name', 'surname'];
     /**
      * Kullanıcıya ait departmanlar için Department_User tablosuna bağlantı yapılıyor.
      * @return \Illuminate\Database\Eloquent\Relations\HasMany

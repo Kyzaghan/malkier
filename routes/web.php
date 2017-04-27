@@ -34,4 +34,16 @@ Route::group(['middleware' => ['web']], function ()
         'as' => 'logout',
         'middleware' => 'auth'
     ]);
+
+    Route::get('/profile', [
+        'uses' => 'auth\UserController@getProfile',
+        'as' => 'profile',
+        'middleware' => 'auth'
+    ]);
+
+    Route::post('/saveprofile', [
+        'uses' => 'auth\UserController@saveProfile',
+        'as' => 'saveprofile',
+        'middleware' => 'auth'
+    ]);
 });

@@ -17,6 +17,7 @@ class CreateWorksTable extends Migration
             $table->increments('id');
             $table->integer('starter_user')->unsigned();
             $table->integer('assigned_user')->unsigned();
+            $table->integer('assigner_user')->unsigned();
             $table->integer('finishes_user')->unsigned();
             $table->dateTime('start_date');
             $table->dateTime('assigned_date');
@@ -28,15 +29,18 @@ class CreateWorksTable extends Migration
             $table->integer('supporttype_id')->unsigned();
             $table->integer('department_id')->unsigned();
             $table->bigInteger('timespent');
+            $table->integer('customer_id')->unsigned();
             $table->timestamps();
 
             //Set foreign keys
             $table->foreign('starter_user')->references('id')->on('users');
             $table->foreign('assigned_user')->references('id')->on('users');
             $table->foreign('finishes_user')->references('id')->on('users');
+            $table->foreign('assigner_user')->references('id')->on('users');
             $table->foreign('worktype_id')->references('id')->on('work_types');
             $table->foreign('supporttype_id')->references('id')->on('support_types');
             $table->foreign('department_id')->references('id')->on('departments');
+            $table->foreign('customer_id')->references('id')->on('customers');
         });
     }
 
