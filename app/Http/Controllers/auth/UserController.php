@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\auth;
+
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -19,7 +20,11 @@ class UserController extends Controller
      */
     public function getDashboard()
     {
-        return view('dashboard');
+        if (Auth::check()) {
+            return view('dashboard');
+        } else {
+            return view('welcome');
+        }
     }
 
     /**
@@ -46,8 +51,7 @@ class UserController extends Controller
         if (Auth::attempt(['username' => $request['username'], 'password' => $request['password']])) {
 
             // Kullanıcının departman yetkisi olup olmadığı kontrol ediliyor
-            if(Auth::user()->departments()->where('department_id', $request['department'])->count() > 0)
-            {
+            if (Auth::user()->departments()->where('department_id', $request['department'])->count() > 0) {
                 return redirect()->route('dashboard');
             } else {
                 Auth::logout();
@@ -65,8 +69,7 @@ class UserController extends Controller
      */
     public function logout()
     {
-        if(Auth::check())
-        {
+        if (Auth::check()) {
             Auth::logout();
             return redirect()->route('login');
         }
