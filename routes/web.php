@@ -17,7 +17,6 @@ Route::get('/', [
 ]);
 Route::group(['middleware' => ['web']], function ()
 {
-
     Route::post('/signin', [
         'uses' => 'auth\UserController@postSignIn',
         'as' => 'signin'

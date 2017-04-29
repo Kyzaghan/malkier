@@ -2,12 +2,16 @@
 
 namespace App;
 
+use Illuminate\Auth\Passwords\CanResetPassword;
+use Illuminate\Database\Eloquent\Model as Eloquent;
 use Illuminate\Contracts\Auth\Authenticatable;
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Auth\Authenticatable as AuthenticableTrait;
+use Zizaco\Entrust\Traits\EntrustUserTrait;
 
-class User extends Model implements Authenticatable
+class User extends Eloquent  implements Authenticatable
 {
-    use \Illuminate\Auth\Authenticatable;
+    use AuthenticableTrait, CanResetPassword;
+    use EntrustUserTrait;
 
     protected $fillable = ['email', 'username', 'name', 'surname'];
     /**
